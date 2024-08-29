@@ -9,45 +9,57 @@
 
 <body>
     <header>Farmáca Preço Popular</header>
-
-    <div class="container-home">
+    <section>
         <h1>Formulário de cadastro de medicamentos</h1>
+    </section>
+    <div class="container-home">
 
         <form id="CadastroMedicamento">
 
-            <div class="input-container"></div>
 
-                <label for="nomeMedicamento">Nome</label>
+            <div> <label for="nomeMedicamento">Nome</label>
                 <input type="text" id="nomeMedicamento">
                 <span id="error-nome" style="color: red"></span>
+            </div>
 
+            <div>
                 <label for="principioAtivo">Princípio Ativo</label>
                 <input type="text" id="principioAtivo">
                 <span id="error-principioAtivo" style="color: red"></span>
+            </div>
 
+            <div>
                 <label for="laboratorioMedicamento">Laboratório</label>
                 <input type="text" id="laboratorioMedicamento">
                 <span id="error-laboratorio" style="color: red"></span>
 
+            </div>
+
+            <div>
+
                 <label for="valorMedicamento">Valor do Produto</label>
                 <input type="text" id="valorMedicamento">
                 <span id="error-valor" style="color: red"></span>
+            </div>
 
-                <label for="fotoMedicamento">Foto do Medicamento</label>
+            <div> <label for="fotoMedicamento">Foto do Medicamento</label>
                 <input type="url" id="fotoMedicamento">
                 <span id="error-foto" style="color: red"></span>
             </div>
 
 
-            <div class="button-container">
-                <button class="button-submit" type="submit">Cadastrar Novo</button>
-            </div>
-        </form>
-
     </div>
 
 
+    <div class="button-container">
+        <button class="button-submit" type="submit">Cadastrar Novo</button>
+    </div>
+    </form>
+
+    </div>
+
     <script src="storage.js" defer></script>
+
 </body>
 
 </html>
