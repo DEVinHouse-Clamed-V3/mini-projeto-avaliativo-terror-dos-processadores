@@ -21,30 +21,41 @@ const storage = {
     event.preventDefault(); // Previne o comportamento padrão de recarregar a página
 
     // Coletando dados do formulário
-    const name = document.getElementById('nomeMedicamento').value;
-    const ingredient = document.getElementById('principioAtivo').value;
-    const laboratory = document.getElementById('laboratorioMedicamento').value;
-    const price = document.getElementById('valorMedicamento').value;
-    const image = document.getElementById('fotoMedicamento').value;
+    const name = document.getElementById('nomeMedicamento').value.trim();
+    const ingredient = document.getElementById('principioAtivo').value.trim();
+    const laboratory = document.getElementById('laboratorioMedicamento').value.trim();
+    const price = document.getElementById('valorMedicamento').value.trim();
+    const image = document.getElementById('fotoMedicamento').value.trim();
 
-    if (!name || !ingredient || !laboratory|| !price|| !image) {
+    if (!name || !ingredient || !laboratory|| !price) {
       alert('Por favor, preencha todos os campos.');
       return; // Impede o envio se algum campo estiver vazio
   }
-    // Criando o objeto medicamento
+
+  const isValidUrl = (url) => {
+    try {
+      new URL(url); // Tenta criar um objeto URL
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  const imageUrl = image && isValidUrl(image) ? image : 'https://img.freepik.com/vetores-premium/frasco-de-medicamento-em-branco-com-caixa-realista_134452-15.jpg';
+    
     const newMedication = {
       name: name,
       ingredient: ingredient,
       laboratory: laboratory,
       price: price,
-      image: image
+      image: imageUrl
     };
 
     // Recuperando a lista de medicamentos do localStorage
     let medications = storage.sync();
 
     // Adicionando o novo medicamento à lista
-    medications.push(newMedication);
+    medications.unshift(newMedication);
 
     // Salvando a lista atualizada no localStorage
     storage.save(medications)
@@ -54,6 +65,7 @@ const storage = {
 
     // Exibir uma mensagem de sucesso ou realizar outra ação desejada
     alert('Medicamento cadastrado com sucesso!');
+    loaded(); 
 });
   
 
@@ -133,7 +145,7 @@ function loaded(){
 
   // pega a lista onde os produtos vão ficar
   const itensPlace = document.getElementById('lista-medicamento')
-
+  itensPlace.innerHTML = '';
   // faz um loop nos itens
   items.forEach( item => {
       
